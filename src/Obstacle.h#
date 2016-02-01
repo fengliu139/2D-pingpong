@@ -1,0 +1,54 @@
+/**@file Obstacle.h
+ * @author Jiajun Ni
+ * @brief draw obstacles avoid overlapping the robot
+*/
+
+#ifndef OBSTACLE_H
+#define OBSTACLE_H
+
+#include "Common.h"
+
+
+/**
+ * @brief obstacle with circul
+ */
+class CircularObstacle: public Object
+{
+public:
+	CircularObstacle();
+	CircularObstacle(const GLPosition &pos, const GLint r);
+
+	virtual ~CircularObstacle();
+
+public:
+    /** @brief go on a pleasure trip this obstacle */
+	virtual void move(const time_t elapsedTime);
+ 
+	virtual void render(const glColorVec &c);
+
+	virtual bool detectCollision();
+
+    /** @brief ratote @deg degrees */
+	virtual void rotate(const GLint &deg);
+ 
+    /** @brief update position with @newPos */
+	virtual void updatePosition(const GLPosition &newPos);
+
+public:
+    /** @brief get the radius */
+	GLint getRadius() const;
+
+protected:
+    /** @brief draw a circle obstacle by defined color */
+	virtual void draw();
+
+public:	
+	GLint radius;       
+	GLint speed;
+	GLint direction;
+
+	bool motionless;
+
+	glColorVec color;
+};
+#endif

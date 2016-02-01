@@ -1,0 +1,206 @@
+\hypertarget{classObject}{\section{Object Class Reference}
+\label{classObject}\index{Object@{Object}}
+}
+
+
+base object class obstacle, robot, and any other simulate object.  
+
+
+
+
+{\ttfamily \#include $<$Common.\-h$>$}
+
+Inheritance diagram for Object\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classObject}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classObject_ad8dadb365053c182931671a424199e36}{Type} \{ {\bfseries e\-Circular} = 0, 
+{\bfseries e\-Plane} = 1, 
+{\bfseries e\-Robot} = 2, 
+{\bfseries e\-Other}
+ \}
+\begin{DoxyCompactList}\small\item\em circular obstacle, plane obstacle, robot \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classObject_a0307ab0a90c744dd7eb65fec04607686}{virtual void \hyperlink{classObject_a0307ab0a90c744dd7eb65fec04607686}{move} (const time\-\_\-t elapsed\-Time)=0}\label{classObject_a0307ab0a90c744dd7eb65fec04607686}
+
+\begin{DoxyCompactList}\small\item\em drive obstacle moving \end{DoxyCompactList}\item 
+\hypertarget{classObject_a9f985500da322266d7782ab2cc5e6eaf}{virtual void \hyperlink{classObject_a9f985500da322266d7782ab2cc5e6eaf}{render} (const \hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} \&c)=0}\label{classObject_a9f985500da322266d7782ab2cc5e6eaf}
+
+\begin{DoxyCompactList}\small\item\em render this object \end{DoxyCompactList}\item 
+\hypertarget{classObject_a56f456af2b1ba5a34c27f9b4c5d10dda}{virtual bool \hyperlink{classObject_a56f456af2b1ba5a34c27f9b4c5d10dda}{detect\-Collision} ()=0}\label{classObject_a56f456af2b1ba5a34c27f9b4c5d10dda}
+
+\begin{DoxyCompactList}\small\item\em check if collision with any other object \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classObject_abba9760277a437884404992f926d2e4d}{detect\-Overlapping} (\hyperlink{structGLPosition}{G\-L\-Position} \&pos\-Left\-Top, \hyperlink{structGLPosition}{G\-L\-Position} \&pos\-Right\-Bottom, const G\-Lint \&radius)
+\begin{DoxyCompactList}\small\item\em check if over lapped with any other object? \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classObject_ad9adac7de77247bd045a43c317794899}{detect\-Wall} (const G\-Lint \&width, const G\-Lint \&height, const G\-Lint \&radius) const 
+\begin{DoxyCompactList}\small\item\em check if collided with wall? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classObject_a59f4160d4d035e85ebdd706acdcd60f9}{virtual void \hyperlink{classObject_a59f4160d4d035e85ebdd706acdcd60f9}{draw} ()=0}\label{classObject_a59f4160d4d035e85ebdd706acdcd60f9}
+
+\begin{DoxyCompactList}\small\item\em draw this object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+base object class obstacle, robot, and any other simulate object. 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classObject_abba9760277a437884404992f926d2e4d}{\index{Object@{Object}!detect\-Overlapping@{detect\-Overlapping}}
+\index{detect\-Overlapping@{detect\-Overlapping}!Object@{Object}}
+\subsubsection[{detect\-Overlapping}]{\setlength{\rightskip}{0pt plus 5cm}bool Object\-::detect\-Overlapping (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-L\-Position} \&}]{pos\-Left\-Top, }
+\item[{{\bf G\-L\-Position} \&}]{pos\-Right\-Bottom, }
+\item[{const G\-Lint \&}]{radius}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classObject_abba9760277a437884404992f926d2e4d}
+
+
+check if over lapped with any other object? 
+
+avoid overlapping
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em pos\-Left\-Top} & \\
+\hline
+{\em pos\-Right\-Bottom} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+ arrange data of the rectangle
+ /
+\textcolor{keywordtype}{float} dist;
+\textcolor{keywordflow}{if} (posLeftTop.posX > posRightBottom.posX)
+\{
+    dist = posRightBottom.posX;
+    posRightBottom.posX = posLeftTop.posX;
+    posLeftTop.posX = dist;
+\}
+\textcolor{keywordflow}{if} (posLeftTop.posY > posRightBottom.posY)
+\{
+    dist = posRightBottom.posY;
+    posRightBottom.posY = posLeftTop.posY;
+    posLeftTop.posY = dist;
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+  check whether inscribed square of the cirle and the rectangle cross,
+  express the inscribed square with four line which can be expressed by a number
+ /
+dist = radius / (float)1.4142136;
+
+\textcolor{keywordtype}{float} xSquare1 = position.posX - dist;
+\textcolor{keywordtype}{float} xSquare2 = position.posX + dist;
+\textcolor{keywordtype}{float} ySquare1 = position.posY - dist;
+\textcolor{keywordtype}{float} ySquare2 = position.posY + dist;
+
+\textcolor{keywordflow}{if} (xSquare1 <= posRightBottom.posX && xSquare2 >= posLeftTop.posX && ySquare1 <= posLeftTop.posY
+    && ySquare2 >= posRightBottom.posY)
+\{
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+ check whether there is a vertex of the rectangle in the circle position of rectangle
+ /
+\textcolor{keywordtype}{float} xrectangle = (posLeftTop.posX + posRightBottom.posX) / 2;
+\textcolor{keywordtype}{float} yrectangle = (posLeftTop.posY + posRightBottom.posY) / 2;
+\textcolor{comment}{/**}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+ rectangle is on the top left side of circle*/
+\textcolor{keywordflow}{if} (xrectangle <= position.posX && yrectangle <= position.posY
+    && sqrt((posRightBottom.posX - position.posX) * (posRightBottom.posX - position.posX) + (posRightBottom
+      .posY - position.posY) *
+    (posRightBottom.posY - position.posY)) <= radius)
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (xrectangle > position.posX && yrectangle <= position.posY
+    && sqrt((posLeftTop.posX - position.posX) * (posLeftTop.posX - position.posX) + (posRightBottom.posY - 
+      position.posY) *
+    (posRightBottom.posY - position.posY)) <= radius)
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (xrectangle <= position.posX && yrectangle > position.posY
+    && sqrt((posRightBottom.posX - position.posX) * (posRightBottom.posX - position.posX) + (posLeftTop.
+      posY - position.posY) *
+    (posLeftTop.posY - position.posY)) <= radius)
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sqrt((posLeftTop.posX - position.posX) * (posLeftTop.posX - position.posX) + (posLeftTop.posY - 
+      position.posY) *
+    (posLeftTop.posY - position.posY)) <= radius)
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+ check whether there is one of the four points of the circle is in the rectangle*/
+\textcolor{keywordflow}{if} (((position.posX - radius >= posLeftTop.posX && position.posX - radius <= posRightBottom.posX) ||
+    (position.posX + radius >= posLeftTop.posX && position.posX + radius <= posRightBottom.posX))
+    && position.posY >= posLeftTop.posY && position.posY <= posRightBottom.posY ||
+    ((position.posY - radius >= posLeftTop.posY && position.posY - radius >= posRightBottom.posY) ||
+    (position.posY + radius >= posLeftTop.posY && position.posY + radius <= posRightBottom.posY)) &&
+    position.posX >= posLeftTop.posX && position.posX <= posRightBottom.posX)
+\{
+    \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+\}
+\end{DoxyCode}
+
+
+no case match \hypertarget{classObject_ad9adac7de77247bd045a43c317794899}{\index{Object@{Object}!detect\-Wall@{detect\-Wall}}
+\index{detect\-Wall@{detect\-Wall}!Object@{Object}}
+\subsubsection[{detect\-Wall}]{\setlength{\rightskip}{0pt plus 5cm}bool Object\-::detect\-Wall (
+\begin{DoxyParamCaption}
+\item[{const G\-Lint \&}]{width, }
+\item[{const G\-Lint \&}]{height, }
+\item[{const G\-Lint \&}]{radius}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classObject_ad9adac7de77247bd045a43c317794899}
+
+
+check if collided with wall? 
+
+detect\-Wall.
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em width} & the width of the window \\
+\hline
+{\em height} & the height of the window \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Common_8h}{Common.\-h}\item 
+Common.\-cpp\end{DoxyCompactItemize}

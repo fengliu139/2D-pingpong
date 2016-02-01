@@ -1,0 +1,131 @@
+#include "bat.h"
+
+/**
+ * @brief class CircularObstacle default constuctor
+ * @author Jiajun Ni
+ */
+CircularObstacle::CircularObstacle() : motionless(true)
+{
+    //rand generate direction
+    srand(time(NULL));
+    direction = rand() % 360;
+}
+
+/**
+ * @brief class CircularObstacle constuctor
+ */
+CircularObstacle::CircularObstacle(const GLPosition &pos, const GLint r): motionless(true)
+{
+    /** 
+     *@code 
+     *rand generate direction,set speed to fixed 2 pixels
+     *and use user's setting
+     */
+    srand(time(NULL));
+    direction = rand() % 360;
+    
+    speed = 2;
+    
+    radius = r;
+    position = pos;
+    /** @endcode */
+}
+
+CircularObstacle::~CircularObstacle()
+{
+}
+
+/**
+ * @brief draw a circle obstacle by defined color
+ */
+void CircularObstacle::draw()
+{
+    //if (flagDraw)
+    //{
+        //GLfloat TWOPI = 2.0f * 3.14159f;
+        //GLint sections = 200;
+        
+        //glColor3f(color.posX, color.posY, color.posZ);
+        
+        //glBegin(GL_TRIANGLE_FAN);
+        //glVertex2f(position.posX, position.posY);
+        
+        ///** @code circle represent obstacles. */
+        //for (int i = 0; i <= sections; i++)
+        //{
+            //glVertex2f(position.posX + radius * cos(i * TWOPI / sections), position.posY + radius * sin(i * TWOPI / sections));
+        //}
+        
+        //glEnd();
+        ///** @endcode */
+    //}
+    
+	unsigned int rgba = 0xff0000ff; // red, no alpha
+	glBegin(GL_QUADS);
+	glColor4f(((rgba>>24)&0xff)/255.0f,
+		  ((rgba>>16)&0xff)/255.0f, 
+		  ((rgba>>8)&0xff)/255.0f,
+		  (rgba&0xff)/255.0f);
+	glVertex3f(x,y,0);
+	glVertex3f(x+w,y,0);
+	glVertex3f(x+w,y+h,0);
+	glVertex3f(x,y+h,0);
+	glEnd();
+	glColor4f(1, 1, 1, 1);
+}
+
+/**
+ * @brief go on a pleasure trip this obstacle
+ */
+void CircularObstacle::move(const time_t elapsedTime)
+{
+    if (!motionless)
+    {
+        GLint distance = elapsedTime * speed;
+        GLPosition nextPos =
+            GLPosition(position.posX + distance * sin(direction * PI / 180), position.posY + distance * cos(direction * PI / 180), 0);
+            
+        updatePosition(nextPos);
+    }
+    
+    draw();
+    
+}
+
+bool CircularObstacle::detectCollision()
+{
+    return false;
+}
+
+/**
+ * @brief get the radius
+ */
+GLint CircularObstacle::getRadius() const
+{
+    return radius;
+}
+
+/**
+ * @brief ratote @deg degrees
+ */
+void CircularObstacle::rotate(const GLint &deg)
+{
+    direction += deg;
+    direction = direction % 360;
+}
+
+/**
+ * @brief update position with @newPos
+ */
+void CircularObstacle::updatePosition(const GLPosition &newPos)
+{
+    position = newPos;
+}
+
+/**
+ * @brief set color use @c
+ */
+void CircularObstacle::render(const glColorVec &c)
+{
+    oldColor = color = c;
+}

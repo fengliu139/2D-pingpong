@@ -1,0 +1,290 @@
+\hypertarget{classRobotClass}{\section{Robot\-Class Class Reference}
+\label{classRobotClass}\index{Robot\-Class@{Robot\-Class}}
+}
+
+
+\hyperlink{classRobotClass}{Robot\-Class}. This provides means to store and alter robot state.  
+
+
+
+
+{\ttfamily \#include $<$Robot\-Class.\-h$>$}
+
+Inheritance diagram for Robot\-Class\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRobotClass}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRobotClass_a7125604039c2a4b39e34e4354bd4ce19}{Robot\-Class} ()
+\begin{DoxyCompactList}\small\item\em initialize the position, radius, direction. \end{DoxyCompactList}\item 
+\hyperlink{classRobotClass_ae38ea864dfa0cc63e64a33f33334d804}{Robot\-Class} (\hyperlink{structGLPosition}{G\-L\-Position} \&pos, G\-Lint r, G\-Lint d)
+\begin{DoxyCompactList}\small\item\em current position, radius, direction. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotClass_a83fc8dd757868ab599208245e3aa04cb}{set\-Orientation} (const G\-Lint \&degrees)
+\begin{DoxyCompactList}\small\item\em orientation in degrees G\-Lint \hyperlink{classRobotClass_a808e1643328178e9b0742bab2480d2d4}{get\-Orientation()},speed in pixels per second \end{DoxyCompactList}\item 
+G\-Lint \hyperlink{classRobotClass_a808e1643328178e9b0742bab2480d2d4}{get\-Orientation} ()
+\begin{DoxyCompactList}\small\item\em get orientation of robot \end{DoxyCompactList}\item 
+void \hyperlink{classRobotClass_ada07c364411e6d4c3efd6c5f5e4e6275}{set\-Speed} (const G\-Lint \&pps)
+\begin{DoxyCompactList}\small\item\em set the speed of robot. The speed cannot be less than 0. Set the speed to null when input less that 0. \end{DoxyCompactList}\item 
+G\-Lint \hyperlink{classRobotClass_ac39e7492ee082cb36818f93845c75983}{get\-Speed} ()
+\begin{DoxyCompactList}\small\item\em get speed of robot \end{DoxyCompactList}\item 
+\hypertarget{classRobotClass_a1fbee3e9632e92bb6cde8ef3db4ce9eb}{void {\bfseries set\-Direction\-Color} (const \hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} \&color)}\label{classRobotClass_a1fbee3e9632e92bb6cde8ef3db4ce9eb}
+
+\item 
+\hypertarget{classRobotClass_adcdf87caada18aeca7ee43b73a1f3010}{\hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} {\bfseries direction\-Color} ()}\label{classRobotClass_adcdf87caada18aeca7ee43b73a1f3010}
+
+\item 
+\hypertarget{classRobotClass_a364ac0f9c65a4c2ee4d5b73a09f3ab34}{virtual void \hyperlink{classRobotClass_a364ac0f9c65a4c2ee4d5b73a09f3ab34}{move} (const time\-\_\-t elapsed\-Time)}\label{classRobotClass_a364ac0f9c65a4c2ee4d5b73a09f3ab34}
+
+\begin{DoxyCompactList}\small\item\em drive obstacle moving \end{DoxyCompactList}\item 
+\hypertarget{classRobotClass_af2069bec3bb391b05676e154527674fa}{virtual void \hyperlink{classRobotClass_af2069bec3bb391b05676e154527674fa}{render} (const \hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} \&c)}\label{classRobotClass_af2069bec3bb391b05676e154527674fa}
+
+\begin{DoxyCompactList}\small\item\em render this object \end{DoxyCompactList}\item 
+\hypertarget{classRobotClass_a723bf7484fefcc8860e606d9041f9c76}{void {\bfseries set\-Target} (const int \&id)}\label{classRobotClass_a723bf7484fefcc8860e606d9041f9c76}
+
+\item 
+\hypertarget{classRobotClass_ab8e01362440cf6a0b5eaa6deaceb1c5e}{int {\bfseries target} () const }\label{classRobotClass_ab8e01362440cf6a0b5eaa6deaceb1c5e}
+
+\item 
+\hypertarget{classRobotClass_a805c3afc1be17e30b228d33df3e194e8}{void {\bfseries rotate} (const G\-Lint \&deg)}\label{classRobotClass_a805c3afc1be17e30b228d33df3e194e8}
+
+\item 
+\hypertarget{classRobotClass_affdee45ae76e3408db1c1615439b5b02}{void {\bfseries update\-Position} (const \hyperlink{structGLPosition}{G\-L\-Position} \&new\-Pos)}\label{classRobotClass_affdee45ae76e3408db1c1615439b5b02}
+
+\item 
+\hypertarget{classRobotClass_a1df74eb30a5bda3025eecd188ad42c54}{bool \hyperlink{classRobotClass_a1df74eb30a5bda3025eecd188ad42c54}{detect\-Collision} ()}\label{classRobotClass_a1df74eb30a5bda3025eecd188ad42c54}
+
+\begin{DoxyCompactList}\small\item\em check if collision with any other object \end{DoxyCompactList}\item 
+G\-Lint \hyperlink{classRobotClass_a61a9c5217fb1092668c55864b7e4bad0}{get\-Radius} () const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRobotClass_ad1c37dd20e2049c9f083d44ab05f34e2}{\hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} {\bfseries color}}\label{classRobotClass_ad1c37dd20e2049c9f083d44ab05f34e2}
+
+\item 
+\hypertarget{classRobotClass_a34bfb4f398462a875ec7f1f213beb6f1}{int {\bfseries collided}}\label{classRobotClass_a34bfb4f398462a875ec7f1f213beb6f1}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classRobotClass_af49350c7e914e11df672cc9de68c9ff1}{draw} ()
+\begin{DoxyCompactList}\small\item\em draw a circle represent the robot and a line represent the direction. \end{DoxyCompactList}\item 
+bool \hyperlink{classRobotClass_a480964a3187868d543c0c1f1cf998162}{detect\-Obstacle} (const \hyperlink{classObject}{Object} $\ast$p\-Obj)
+\begin{DoxyCompactList}\small\item\em detect\-Obstacle \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classRobotClass_a02448c8c195e97f3229c6803f47bf8d7}{class {\bfseries Robot\-Tests}}\label{classRobotClass_a02448c8c195e97f3229c6803f47bf8d7}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classRobotClass}{Robot\-Class}. This provides means to store and alter robot state. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classRobotClass_a7125604039c2a4b39e34e4354bd4ce19}{\index{Robot\-Class@{Robot\-Class}!Robot\-Class@{Robot\-Class}}
+\index{Robot\-Class@{Robot\-Class}!RobotClass@{Robot\-Class}}
+\subsubsection[{Robot\-Class}]{\setlength{\rightskip}{0pt plus 5cm}Robot\-Class\-::\-Robot\-Class (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_a7125604039c2a4b39e34e4354bd4ce19}
+
+
+initialize the position, radius, direction. 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\hypertarget{classRobotClass_ae38ea864dfa0cc63e64a33f33334d804}{\index{Robot\-Class@{Robot\-Class}!Robot\-Class@{Robot\-Class}}
+\index{Robot\-Class@{Robot\-Class}!RobotClass@{Robot\-Class}}
+\subsubsection[{Robot\-Class}]{\setlength{\rightskip}{0pt plus 5cm}Robot\-Class\-::\-Robot\-Class (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-L\-Position} \&}]{pos, }
+\item[{G\-Lint}]{r, }
+\item[{G\-Lint}]{d}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_ae38ea864dfa0cc63e64a33f33334d804}
+
+
+current position, radius, direction. 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & the position \\
+\hline
+{\em r} & the radius \\
+\hline
+{\em d} & the direction \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRobotClass_a480964a3187868d543c0c1f1cf998162}{\index{Robot\-Class@{Robot\-Class}!detect\-Obstacle@{detect\-Obstacle}}
+\index{detect\-Obstacle@{detect\-Obstacle}!RobotClass@{Robot\-Class}}
+\subsubsection[{detect\-Obstacle}]{\setlength{\rightskip}{0pt plus 5cm}bool Robot\-Class\-::detect\-Obstacle (
+\begin{DoxyParamCaption}
+\item[{const {\bf Object} $\ast$}]{p\-Obj}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classRobotClass_a480964a3187868d543c0c1f1cf998162}
+
+
+detect\-Obstacle 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em p\-Obs} & position of the Obstacles \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRobotClass_af49350c7e914e11df672cc9de68c9ff1}{\index{Robot\-Class@{Robot\-Class}!draw@{draw}}
+\index{draw@{draw}!RobotClass@{Robot\-Class}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\-Class\-::draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classRobotClass_af49350c7e914e11df672cc9de68c9ff1}
+
+
+draw a circle represent the robot and a line represent the direction. 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyCode}
+  \hyperlink{classRobotClass_af49350c7e914e11df672cc9de68c9ff1}{draw} a circle(robot)
+  and a line for direction
+  /
+for (\textcolor{keywordtype}{int} i = 0; i <= sections; i++)
+\{
+    glVertex2f(position.posX + radius * cos(i * TWOPI / sections), position.posY + radius * sin(i * TWOPI /
+       sections));
+\}
+
+glEnd();
+
+GLint length = radius + 5;
+
+glColor3f(direColor.posX, direColor.posY, direColor.posZ);
+glBegin(GL\_LINE\_STRIP);
+
+glVertex2d(position.posX, position.posY);
+glVertex2d(position.posX + length * cos(direction * PI / 180), position.posY + length * sin(direction * PI 
+      / 180));
+
+glEnd();
+\end{DoxyCode}
+ 
+
+Implements \hyperlink{classObject_a59f4160d4d035e85ebdd706acdcd60f9}{Object}.
+
+\hypertarget{classRobotClass_a808e1643328178e9b0742bab2480d2d4}{\index{Robot\-Class@{Robot\-Class}!get\-Orientation@{get\-Orientation}}
+\index{get\-Orientation@{get\-Orientation}!RobotClass@{Robot\-Class}}
+\subsubsection[{get\-Orientation}]{\setlength{\rightskip}{0pt plus 5cm}G\-Lint Robot\-Class\-::get\-Orientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_a808e1643328178e9b0742bab2480d2d4}
+
+
+get orientation of robot 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\hypertarget{classRobotClass_a61a9c5217fb1092668c55864b7e4bad0}{\index{Robot\-Class@{Robot\-Class}!get\-Radius@{get\-Radius}}
+\index{get\-Radius@{get\-Radius}!RobotClass@{Robot\-Class}}
+\subsubsection[{get\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}G\-Lint Robot\-Class\-::get\-Radius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classRobotClass_a61a9c5217fb1092668c55864b7e4bad0}
+
+\begin{DoxyCode}
+   setup the movement \textcolor{keywordflow}{for} robot
+  /
+\textcolor{keywordtype}{void} \hyperlink{classRobotClass_a364ac0f9c65a4c2ee4d5b73a09f3ab34}{RobotClass::move}(\textcolor{keyword}{const} time\_t elapsedTime)
+\{
+    GLint distance = elapsedTime * speed;
+    \hyperlink{structGLPosition}{GLPosition} nextPos =
+        \hyperlink{structGLPosition}{GLPosition}(position.posX + distance * cos(direction * PI / 180), position.posY + distance
+       * sin(direction * PI / 180), 0);
+        
+    \hyperlink{classRobotClass_af49350c7e914e11df672cc9de68c9ff1}{draw}();
+    updatePosition(nextPos);
+\}
+\end{DoxyCode}
+ \hypertarget{classRobotClass_ac39e7492ee082cb36818f93845c75983}{\index{Robot\-Class@{Robot\-Class}!get\-Speed@{get\-Speed}}
+\index{get\-Speed@{get\-Speed}!RobotClass@{Robot\-Class}}
+\subsubsection[{get\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}G\-Lint Robot\-Class\-::get\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_ac39e7492ee082cb36818f93845c75983}
+
+
+get speed of robot 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\hypertarget{classRobotClass_a83fc8dd757868ab599208245e3aa04cb}{\index{Robot\-Class@{Robot\-Class}!set\-Orientation@{set\-Orientation}}
+\index{set\-Orientation@{set\-Orientation}!RobotClass@{Robot\-Class}}
+\subsubsection[{set\-Orientation}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\-Class\-::set\-Orientation (
+\begin{DoxyParamCaption}
+\item[{const G\-Lint \&}]{degrees}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_a83fc8dd757868ab599208245e3aa04cb}
+
+
+orientation in degrees G\-Lint \hyperlink{classRobotClass_a808e1643328178e9b0742bab2480d2d4}{get\-Orientation()},speed in pixels per second 
+
+set the orientation of robot.
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em degree} & the direction \\
+\hline
+\end{DoxyParams}
+\hypertarget{classRobotClass_ada07c364411e6d4c3efd6c5f5e4e6275}{\index{Robot\-Class@{Robot\-Class}!set\-Speed@{set\-Speed}}
+\index{set\-Speed@{set\-Speed}!RobotClass@{Robot\-Class}}
+\subsubsection[{set\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\-Class\-::set\-Speed (
+\begin{DoxyParamCaption}
+\item[{const G\-Lint \&}]{pps}
+\end{DoxyParamCaption}
+)}}\label{classRobotClass_ada07c364411e6d4c3efd6c5f5e4e6275}
+
+
+set the speed of robot. The speed cannot be less than 0. Set the speed to null when input less that 0. 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni, Jiajun Ni 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em pps} & speed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{RobotClass_8h}{Robot\-Class.\-h}\item 
+\hyperlink{RobotClass_8cpp}{Robot\-Class.\-cpp}\end{DoxyCompactItemize}

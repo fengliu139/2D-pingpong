@@ -1,0 +1,165 @@
+\hypertarget{classSimulation}{\section{Simulation Class Reference}
+\label{classSimulation}\index{Simulation@{Simulation}}
+}
+
+
+The \hyperlink{classSimulation}{Simulation} class. This sets up the G\-U\-I and the drawing environment.  
+
+
+
+
+{\ttfamily \#include $<$Simulation.\-h$>$}
+
+Inheritance diagram for Simulation\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSimulation}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classSimulation_a0fd1c91d4e7699e893929d56b60a60bf}{U\-I\-Control\-Type} \{ {\bfseries U\-I\-\_\-\-Q\-U\-I\-T} = 0, 
+{\bfseries U\-I\-\_\-\-S\-T\-A\-R\-T} = 1, 
+{\bfseries U\-I\-\_\-\-P\-A\-U\-S\-E} = 2, 
+{\bfseries U\-I\-\_\-\-R\-E\-S\-U\-M\-E} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em enum the control type to setup button with four functions start,pause,resume and quit \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSimulation_a4c669ceaa34c7130966ce45f9de75fbe}{Simulation} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int width, int height)
+\begin{DoxyCompactList}\small\item\em initialize \hyperlink{classSimulation}{Simulation} class \end{DoxyCompactList}\item 
+\hyperlink{classSimulation_a80fad3f57dfaf195a36f7bc49bc88279}{$\sim$\-Simulation} ()
+\begin{DoxyCompactList}\small\item\em for the environment and Robot,Obstacle, Target object can have the setup for theris reder ans sence function and so on \end{DoxyCompactList}\item 
+\hypertarget{classSimulation_ad50fa94a630141b3221d2d946a4bb11b}{void \hyperlink{classSimulation_ad50fa94a630141b3221d2d946a4bb11b}{glui\-Control} (int ctrl\-I\-D)}\label{classSimulation_ad50fa94a630141b3221d2d946a4bb11b}
+
+\begin{DoxyCompactList}\small\item\em control with ctrl\-Id the control setup \end{DoxyCompactList}\item 
+\hypertarget{classSimulation_a449dcb7d97dfba99efe770de2f399c31}{void \hyperlink{classSimulation_a449dcb7d97dfba99efe770de2f399c31}{display} ()}\label{classSimulation_a449dcb7d97dfba99efe770de2f399c31}
+
+\begin{DoxyCompactList}\small\item\em display the environment call environment update to simulate anything \end{DoxyCompactList}\item 
+\hypertarget{classSimulation_a786d1ba31d29937f0ac6f3ea88f8a607}{void {\bfseries left\-Mouse\-Down} (int x, int y)}\label{classSimulation_a786d1ba31d29937f0ac6f3ea88f8a607}
+
+\item 
+\hypertarget{classSimulation_a62ef254d85017074cd521a5787b5a234}{void {\bfseries left\-Mouse\-Up} (int x, int y)}\label{classSimulation_a62ef254d85017074cd521a5787b5a234}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classSimulation_abaa3b54d7bf4b7cb263a9aa09bccfa2f}{Start} ()
+\begin{DoxyCompactList}\small\item\em button's function \end{DoxyCompactList}\item 
+\hypertarget{classSimulation_ac973ce238bc70e9be327f60c694b1b65}{static void {\bfseries Pause} ()}\label{classSimulation_ac973ce238bc70e9be327f60c694b1b65}
+
+\item 
+\hypertarget{classSimulation_a644cd9822aa95007143a108a7551780a}{static void {\bfseries Resume} ()}\label{classSimulation_a644cd9822aa95007143a108a7551780a}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSimulation_a033a987c62d4a02161444c1cb1e79d92}{\hyperlink{classEnvironmentClass}{Environment\-Class} \hyperlink{classSimulation_a033a987c62d4a02161444c1cb1e79d92}{environment}}\label{classSimulation_a033a987c62d4a02161444c1cb1e79d92}
+
+\begin{DoxyCompactList}\small\item\em environment \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classSimulation_a738b72757500bc1c1fb33ffa42053c71}{Unmoved} = false
+\begin{DoxyCompactList}\small\item\em variable setting up to judge the condition for the movement so that use it to control the button's function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classSimulation}{Simulation} class. This sets up the G\-U\-I and the drawing environment. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classSimulation_a0fd1c91d4e7699e893929d56b60a60bf}{\index{Simulation@{Simulation}!U\-I\-Control\-Type@{U\-I\-Control\-Type}}
+\index{U\-I\-Control\-Type@{U\-I\-Control\-Type}!Simulation@{Simulation}}
+\subsubsection[{U\-I\-Control\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Simulation\-::\-U\-I\-Control\-Type}}}\label{classSimulation_a0fd1c91d4e7699e893929d56b60a60bf}
+
+
+enum the control type to setup button with four functions start,pause,resume and quit 
+
+\begin{DoxyAuthor}{Author}
+Xinyue Zhang 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSimulation_a4c669ceaa34c7130966ce45f9de75fbe}{\index{Simulation@{Simulation}!Simulation@{Simulation}}
+\index{Simulation@{Simulation}!Simulation@{Simulation}}
+\subsubsection[{Simulation}]{\setlength{\rightskip}{0pt plus 5cm}Simulation\-::\-Simulation (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a4c669ceaa34c7130966ce45f9de75fbe}
+
+
+initialize \hyperlink{classSimulation}{Simulation} class 
+
+initialize the \hyperlink{classSimulation}{Simulation} class inherited from \hyperlink{classBaseGfxApp}{Base\-Gfx\-App} creates a basic U\-I panel with quit button create buttons on the U\-I panel reperate the U\-I control type and the functions on each button \begin{DoxyAuthor}{Author}
+Jiajun Ni, Xinyue Zhang
+\end{DoxyAuthor}
+
+\begin{DoxyCode}
+ Initialize OpenGL
+  /
+glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+glEnable(GL\_BLEND);
+glBlendFunc(GL\_SRC\_ALPHA, GL\_ONE\_MINUS\_SRC\_ALPHA);
+glMatrixMode(GL\_PROJECTION);
+glLoadIdentity();
+glMatrixMode(GL\_MODELVIEW);
+glLoadIdentity();
+gluOrtho2D(0, m\_width, 0, m\_height);
+glViewport(0, 0, m\_width, m\_height);
+
+\hyperlink{classEnvironmentClass_a3af1904397a45c74acbc0c8246c0317d}{EnvironmentClass::init}(width, height);
+\end{DoxyCode}
+\hypertarget{classSimulation_a80fad3f57dfaf195a36f7bc49bc88279}{\index{Simulation@{Simulation}!$\sim$\-Simulation@{$\sim$\-Simulation}}
+\index{$\sim$\-Simulation@{$\sim$\-Simulation}!Simulation@{Simulation}}
+\subsubsection[{$\sim$\-Simulation}]{\setlength{\rightskip}{0pt plus 5cm}Simulation\-::$\sim$\-Simulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a80fad3f57dfaf195a36f7bc49bc88279}
+
+
+for the environment and Robot,Obstacle, Target object can have the setup for theris reder ans sence function and so on 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSimulation_abaa3b54d7bf4b7cb263a9aa09bccfa2f}{\index{Simulation@{Simulation}!Start@{Start}}
+\index{Start@{Start}!Simulation@{Simulation}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Simulation\-::\-Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classSimulation_abaa3b54d7bf4b7cb263a9aa09bccfa2f}
+
+
+button's function 
+
+the button function update unmoved conditions after clicking each button 
+
+\subsection{Member Data Documentation}
+\hypertarget{classSimulation_a738b72757500bc1c1fb33ffa42053c71}{\index{Simulation@{Simulation}!Unmoved@{Unmoved}}
+\index{Unmoved@{Unmoved}!Simulation@{Simulation}}
+\subsubsection[{Unmoved}]{\setlength{\rightskip}{0pt plus 5cm}bool Simulation\-::\-Unmoved = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{classSimulation_a738b72757500bc1c1fb33ffa42053c71}
+
+
+variable setting up to judge the condition for the movement so that use it to control the button's function 
+
+initialize the Unmoved as all the objects in the screen has started moving 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Simulation_8h}{Simulation.\-h}\item 
+\hyperlink{Simulation_8cpp}{Simulation.\-cpp}\end{DoxyCompactItemize}

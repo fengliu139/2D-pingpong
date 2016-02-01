@@ -1,0 +1,489 @@
+#include "EnvironmentClass.h"
+
+
+std::vector<CircularObstacle *> EnvironmentClass::vecObstacle;
+std::vector<RobotClass *> EnvironmentClass::vecRobot;
+
+int EnvironmentClass::winWidth = 0;
+int EnvironmentClass::winHeight = 0;
+
+glColorVec EnvironmentClass::collidedColor = glColorVec(101, 106, 100);
+
+
+EnvironmentClass::EnvironmentClass() : t_lastUpdate(0)
+{
+
+}
+
+EnvironmentClass::~EnvironmentClass()
+{
+    for (std::size_t i = 0; i < vecRobot.size(); i++)
+        delete vecRobot[i];
+        
+    for (std::size_t i = 0; i < vecObstacle.size(); i++)
+        delete vecObstacle[i];
+}
+
+/** 
+ * @author Jiajun Ni
+ * @brief init the scene, create both robots and obstacles, place them randomly,
+ * and match the robot and its target.
+ *
+ * @width GUI window width
+ * @height GUI window height
+ * no return value
+ */
+void EnvironmentClass::init(const GLint &width, const GLint &height)
+{
+    /** 
+     * @code  
+     * initialize robot objects
+     * set robot radius to 16 pixels,
+     * generate a rand posion for the robot.
+     * Set robot id and type with speed:8px.
+     * appointed target obstacle,set default color,different direction line color for different robot,
+     * add the robot instance to the vector
+     */ 
+    for (int i = 0; i < 2; i++)
+    {
+        GLint robotRadius = 16;
+        GLPosition robotPos = generateRandPosition(width, height, robotRadius, robotRadius);
+        RobotClass *pRobot = new(std::nothrow) RobotClass(robotPos, robotRadius, 0);
+        
+        if (NULL == pRobot)
+            continue;
+        pRobot->id = 1000 + i;
+        pRobot->type = Object::eRobot;
+        pRobot->setSpeed(8);
+        
+        pRobot->setTarget(i * 2 + 1010);
+        pRobot->render(glColorVec(0.0f, 80.0f, 100.0f));
+         
+        if (i % 2)
+            pRobot->setDirectionColor(glColorVec(100, 0, 0));
+        else
+            pRobot->setDirectionColor(glColorVec(200, 0, 100));
+             
+        vecRobot.push_back(pRobot);
+    }
+    /**
+     *@endcode
+     */
+    
+    /**
+     *@todo must create 2 robots
+     */ 
+    assert(2 == vecRobot.size());
+   
+    /** 
+     * @code  
+     * initialize obstacle objects,
+     * rand generater radius for obstacle, it between [16, 48) pixels
+     * generate a rand posion for the obstacle and new circular obstacle instance
+     * set obstacle id,type, default color, 
+     * if this obstacle is appointed to a robot, use the robot's direction line color to draw it
+     * add to the obstacle vector
+     */ 
+    for (int i = 0; i < 8; i++)
+    {
+        GLint obsRadius = rand() % 32 + 50; 
+        GLPosition obsPos = generateRandPosition(width, height, obsRadius, obsRadius);
+        CircularObstacle *pCircObs = new(std::nothrow) CircularObstacle(obsPos, obsRadius);
+        
+        if (NULL == pCircObs)
+            continue;
+        
+        pCircObs->id = 1010 + i;
+       
+        pCircObs->type = Object::eCircular;
+        
+        pCircObs->render(glColorVec(0, 100, 0));
+        
+        for (std::size_t j = 0; j < vecRobot.size(); j++)
+        {
+            if (vecRobot[j]->target() != pCircObs->id)
+                continue;
+                
+            pCircObs->motionless = false;
+            pCircObs->render(vecRobot[j]->directionColor());
+        }
+        vecObstacle.push_back(pCircObs);
+    }
+    /**
+     *@endcode
+     */
+    
+    /**
+     *@todo must create 6 circular obstacle
+     */ 
+    assert(8 == vecObstacle.size());
+    
+    /**
+     *@todo remember the gui windows's size
+     */ 
+    winWidth = width;
+    winHeight = height;
+}
+
+/**
+ * @brief generate a rand position for any object, base on its bounding rectangle
+ * @author Jiajun Ni
+ * @width - GUI window width
+ * @height - GUI window height
+ * @boundingWidth - the bounding rectangle with
+ * @boundingWidth - the bounding rectangle height
+ 
+ * if successed, 
+ * @return the generated posion, 
+ * otherwise, 
+ * @return (0, 0, 0)
+ */
+GLPosition EnvironmentClass::generateRandPosition(const GLint &width, const GLint &height, const GLint &boundingWidth,
+        const GLint &boundingHeight)
+{   
+    while (true)
+    {
+        bool overlapped = false;
+        
+        srand(time(NULL));
+        
+        GLint posX = rand() % width + 1;
+        GLint posY = rand() % height + 1;
+        
+       /** 
+        *@todo the poston must in the window
+        */ 
+        
+        if (posX < boundingWidth || posX + boundingWidth > width)
+            continue;
+            
+        if (posY < boundingHeight || posY + boundingHeight > height)
+            continue;
+            
+        GLPosition leftTop(posX - boundingWidth, posY - boundingHeight, 0),
+                   rightBottom(posX + boundingWidth, posY + boundingHeight, 0);
+                   
+        /**
+	     * @code 
+	     * check if the current object over lapped any robot
+	     * check if the robot completely contain this object
+	     * check if the robot over lapped the object
+	     */  
+        for (std::size_t i = 0; i < vecRobot.size(); i++)
+        {
+            if (distance(GLPosition(posX, posY, 0), vecRobot[i]->position) < vecRobot[i]->getRadius() + std::max(boundingWidth,
+                    boundingHeight))
+            {
+                overlapped = true;
+                break;
+            }
+            
+            if (vecRobot[i]->detectOverlapping(leftTop, rightBottom, vecRobot[i]->getRadius()))
+            {
+                overlapped = true;
+                break;
+            }
+        }
+        /**
+         *@endcode
+         */
+         
+         /**
+          * @code
+          * check if the obstacle completely contain this object
+          * check if the robot over lapped the robot
+          * if the position is over lapped, it should be ignored
+          */ 
+        for (std::size_t i = 0; i < vecObstacle.size(); i++)
+        {
+            if (distance(GLPosition(posX, posY, 0), vecObstacle[i]->position) < vecObstacle[i]->getRadius() + std::max(boundingWidth,
+                    boundingHeight))
+            {
+                overlapped = true;
+                break;
+            }
+            
+            if (vecObstacle[i]->detectOverlapping(leftTop, rightBottom, vecObstacle[i]->getRadius()))
+            {
+                overlapped = true;
+                break;
+            }
+        }
+        /**
+         *@endcode
+         */
+         
+        if (overlapped)
+            continue;
+            
+        return GLPosition(posX, posY, 0);
+    }
+    
+    return GLPosition(0, 0, 0);
+}
+
+/**
+ * @brief calculate the distance between @pos1 and @pos2
+ * @pos1    - the start posion
+ * @pos2    - the end posion
+ * @author Jiajun Ni
+ * @return  - the distance between @pos1 and @pos2
+ */
+double EnvironmentClass::distance(const GLPosition &pos1, const GLPosition &pos2)
+{
+    double distance = -1.0;
+    
+    /**
+     * @code
+     * if the @pos1 and @pos2 form a right angled triangle, use the pythagorean theorem to calculate
+     * the distance. otherwise, calculate it directly.
+     */
+    if (pos1.posX != pos2.posX && pos1.posY != pos2.posY)
+    {
+        GLint a = abs(pos1.posX - pos2.posX);
+        GLint b = abs(pos1.posY - pos2.posY);
+        
+        distance = sqrt(pow(a, 2) + pow(b, 2));
+    }
+    else
+    {
+        if (pos1.posX == pos2.posX)
+        {
+            distance = abs(pos1.posY - pos2.posY);
+        }
+        
+        if (pos1.posY == pos2.posY)
+        {
+            distance = abs(pos1.posX - pos2.posX);
+        }
+    }
+    /**
+     *@endcode
+     */
+     
+    return distance;
+}
+
+/**
+ * @brief the senser for *Touch*
+ * @pObject     - the detect object
+ * @flagRemoved - the flag to indicate if the @pObject is deleted?
+ * @author Jiajun Ni
+ * @return      - if any collision found, return true, otherwise, return false
+ */
+bool EnvironmentClass::senseTouch(Object *pObject)
+{
+    GLint offset = 0;
+    
+    /**
+     *@code 
+     * check if the object is robot? if yes, make some initialize job.
+     * 
+     */ 
+    if (pObject->type == Object::eRobot)
+    {
+        const RobotClass *pRobot = dynamic_cast<const RobotClass *>(pObject);
+        
+        if (pRobot)
+        {
+            offset = pRobot->getRadius();
+            
+            if (pRobot->detectWall(winWidth, winHeight, pRobot->getRadius()))
+                return true;
+                
+        }
+    }
+     /**
+     *@endcode
+     */
+     
+    /**
+     *@code 
+     * check if the object is circular obstacle? if yes, make some initialize job.
+     */ 
+    else if (pObject->type == Object::eCircular)
+    {
+        const CircularObstacle *pCircObs = dynamic_cast<const CircularObstacle *>(pObject);
+        
+        if (pCircObs)
+        {
+            offset = pCircObs->getRadius();
+            
+            if (pCircObs->detectWall(winWidth, winHeight, pCircObs->getRadius()))
+                return true;
+        }
+    }
+    
+    bool impact = false;
+     /**
+     *@endcode
+     */
+     
+    /** 
+     * @code
+     * check if the @pObject collided with any robot?
+     * if the @pObject is itself, skip it, and record the index for the robot vector
+     * if the distance from the @pObject to the robot less then the sum of robot's radius and offset,
+     * cosider it collided.
+     */ 
+    for (std::size_t i = 0; i < vecRobot.size(); i++)
+    {
+        if (pObject->id == vecRobot[i]->id)
+            continue;
+        
+        if (vecRobot[i]->getRadius() + offset >= EnvironmentClass::distance(pObject->position, vecRobot[i]->position))
+        {
+            vecRobot[i]->color = EnvironmentClass::collidedColor;
+            impact = true;
+            
+            break;
+        }
+    }
+     /**
+     *@endcode
+     */
+     
+     /**
+      * @code 
+      * if the @pObject is itself, skip it, and record the index for the robot vector
+      * if the distance from the @pObject to the obstace less then the sum of circular
+      * obstacle's radius and offset, cosider it collided.
+      * if the @pObject is robot, and current circular obstacle is its target, distance both objects
+      */ 
+    for (std::size_t j = 0; !impact && j < vecObstacle.size(); j++)
+    {
+        if (pObject->id == vecObstacle[j]->id)
+            continue;
+            
+        if (vecObstacle[j]->getRadius() + offset >= EnvironmentClass::distance(pObject->position, vecObstacle[j]->position))
+        {
+            if (pObject->type == Object::eRobot && dynamic_cast<const RobotClass *>(pObject)->target() == vecObstacle[j]->id)
+            {
+                pObject->flagDraw = false;
+                vecObstacle[j]->flagDraw = false;
+            }
+            
+            impact = true;
+            vecObstacle[j]->color = EnvironmentClass::collidedColor;
+            
+            break;
+        }
+    }
+     /**
+      *@endcode
+      */
+    return impact;
+}
+
+/**
+ * @brief the senser for *Homing*, it base on the rectangular coordinate system
+ *
+ * @pRobot      - the detect robot
+ * @pTarget     - the matched circular obstacle
+ * @author Jiajun Ni
+ * @return      - return the degrees from the @pRobot to the @pTarget
+ */
+double EnvironmentClass::senseHoming(const RobotClass *pRobot, const Object *pTarget)
+{
+    if (pRobot->detectWall(winWidth, winHeight, pRobot->getRadius()))
+        return -1.0;
+        
+    GLint a = pTarget->position.posX - pRobot->position.posX;
+    GLint b = pTarget->position.posY - pRobot->position.posY;
+    
+    double result = atan2(b, a) * 180.0 / PI;
+    
+    return result > 0 ? result : 360.0 + result;
+}
+
+/**
+ *@brief update simulating scene, such as robot's angle, object's posiion, etc
+ *@author Jiajun Ni
+ */
+void EnvironmentClass::update()
+{
+    /**
+     * @todo calculate elapsed time
+     */ 
+    time_t t_now = time(NULL);
+
+    if (0 == t_lastUpdate)
+        t_lastUpdate = t_now;
+
+    time_t elapsedTime = t_now - t_lastUpdate;
+
+    /**
+     * @code
+     * update robot's status
+     * check if robot collided its target, let them both disappear, and rotate it 90 degrees
+     * driving the robot to moving by calculate its offset since last update
+     * find out the robot's target obstacle
+     * calculate the degrees from robot to its target, and update its orientaton
+     */ 
+    for (std::size_t i = 0; i < 2 /*vecRobot.size()*/; i++)
+    {
+            if (EnvironmentClass::senseTouch(vecRobot[i]))
+            {
+                if (vecRobot[i]->collided <= 2) // Prevents robot from spinning wildly
+                {
+                    vecRobot[i]->rotate(90);
+                }
+                vecRobot[i]->collided = 3; // Amount of update()'s until homing begins
+            }
+            else
+                vecRobot[i]->color = vecRobot[i]->oldColor;
+
+        vecRobot[i]->move(elapsedTime);
+        
+        time_t t_RotatePeriod = t_now - t_lastRotate;
+        if (t_RotatePeriod >= 2)
+        {
+            Object *pTarget = NULL;
+            t_lastRotate = t_now;
+            
+            for (std::size_t j = 0; j < vecObstacle.size(); j++)
+            {
+                if (vecObstacle[j]->id != vecRobot[i]->target())
+                    continue;
+                    
+                pTarget = vecObstacle[j];
+                break;
+            }
+            
+            assert(NULL != pTarget);
+
+            if (vecRobot[i]->collided <= 0) { // if robot has not recently collided with an object
+                vecRobot[i]->setOrientation(EnvironmentClass::senseHoming(vecRobot[i], pTarget));
+            }
+            vecRobot[i]->collided -= 1;
+        }
+    }
+    /**
+     *@endcode
+     */
+    
+    /**
+     * @code
+     * update all circular obstacle's status
+     * check if circular obstacle collided its robot, if yes, let them both disappear, and rotate it 90 degrees
+     * driving the circular obstacle to moving by calculate its offset since last update
+     */ 
+    for (std::size_t j = 0; j < vecObstacle.size(); j++)
+    {
+        if (EnvironmentClass::senseTouch(vecObstacle[j]))
+            vecObstacle[j]->rotate(90);
+        else
+            vecObstacle[j]->color = vecObstacle[j]->oldColor;
+        
+        vecObstacle[j]->move(elapsedTime);
+    }
+    /**
+     *@endcode
+     */
+     
+    /**
+     *@todo update the last update time
+     */ 
+    t_lastUpdate = t_now;
+}
+

@@ -1,0 +1,530 @@
+\hypertarget{classEnvironmentClass}{\section{Environment\-Class Class Reference}
+\label{classEnvironmentClass}\index{Environment\-Class@{Environment\-Class}}
+}
+
+
+Class to contain physical objects, sizes/position of all objects and contains info on where the borders are in the window.  
+
+
+
+
+{\ttfamily \#include $<$Environment\-Class.\-h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEnvironmentClass_a563d291dc565587df66e61b8bca1cd91}{typedef std\-::vector$<$ std\-::pair\\*
+$<$ std\-::pair$<$ double, double $>$\\*
+, double $>$ $>$ {\bfseries Offset\-Triangle}}\label{classEnvironmentClass_a563d291dc565587df66e61b8bca1cd91}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}{update} ()
+\begin{DoxyCompactList}\small\item\em update simulating scene, such as robot's angle, object's posiion, etc \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classEnvironmentClass_a3af1904397a45c74acbc0c8246c0317d}{init} (const G\-Lint \&width, const G\-Lint \&height)
+\begin{DoxyCompactList}\small\item\em init the scene, create both robots and obstacles, place them randomly, \end{DoxyCompactList}\item 
+static bool \hyperlink{classEnvironmentClass_a52f4e00b563733c2019204d16de139b9}{sense\-Touch} (\hyperlink{classObject}{Object} $\ast$p\-Object)
+\begin{DoxyCompactList}\small\item\em the senser for {\itshape Touch}  -\/ the detect object  -\/ the flag to indicate if the  is deleted? \end{DoxyCompactList}\item 
+static double \hyperlink{classEnvironmentClass_a5b501f7123ca5ba7fd711a44a3d0141e}{sense\-Homing} (const \hyperlink{classRobotClass}{Robot\-Class} $\ast$p\-Robot, const \hyperlink{classObject}{Object} $\ast$p\-Target)
+\begin{DoxyCompactList}\small\item\em the senser for {\itshape Homing}, it base on the rectangular coordinate system \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\-::vector\\*
+$<$ \hyperlink{classCircularObstacle}{Circular\-Obstacle} $\ast$ $>$ \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vec\-Obstacle}
+\item 
+\hypertarget{classEnvironmentClass_aad109138f5c22257a6d2827ac4c5f70c}{static std\-::vector$<$ \hyperlink{classRobotClass}{Robot\-Class} $\ast$ $>$ {\bfseries vec\-Robot}}\label{classEnvironmentClass_aad109138f5c22257a6d2827ac4c5f70c}
+
+\item 
+\hypertarget{classEnvironmentClass_af1e7176105de214ec957d3f7452992a4}{static int {\bfseries win\-Width} = 0}\label{classEnvironmentClass_af1e7176105de214ec957d3f7452992a4}
+
+\item 
+\hypertarget{classEnvironmentClass_a59a6025ef7ffc092995111b53a316767}{static int {\bfseries win\-Height} = 0}\label{classEnvironmentClass_a59a6025ef7ffc092995111b53a316767}
+
+\item 
+\hypertarget{classEnvironmentClass_ad5de7d6824468cb6ea5ba09b9f10c114}{static \hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec} {\bfseries collided\-Color} = \hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{gl\-Color\-Vec}(101, 106, 100)}\label{classEnvironmentClass_ad5de7d6824468cb6ea5ba09b9f10c114}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{structGLPosition}{G\-L\-Position} \hyperlink{classEnvironmentClass_a330bbca10dbd5743714d7e722748ae47}{generate\-Rand\-Position} (const G\-Lint \&width, const G\-Lint \&height, const G\-Lint \&bounding\-Width, const G\-Lint \&bounding\-Height)
+\begin{DoxyCompactList}\small\item\em generate a rand position for any object, base on its bounding rectangle \end{DoxyCompactList}\item 
+static double \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} (const \hyperlink{structGLPosition}{G\-L\-Position} \&pos1, const \hyperlink{structGLPosition}{G\-L\-Position} \&pos2)
+\begin{DoxyCompactList}\small\item\em calculate the distance between  and   -\/ the start posion  -\/ the end posion \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classEnvironmentClass_a5b6e810512e47f0467ef729ad744bc3f}{class \hyperlink{classEnvironmentClass_a5b6e810512e47f0467ef729ad744bc3f}{Environment\-Class\-Tests}}\label{classEnvironmentClass_a5b6e810512e47f0467ef729ad744bc3f}
+
+\begin{DoxyCompactList}\small\item\em Friend for class test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to contain physical objects, sizes/position of all objects and contains info on where the borders are in the window. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{\index{Environment\-Class@{Environment\-Class}!distance@{distance}}
+\index{distance@{distance}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{distance}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\-Class\-::distance (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-L\-Position} \&}]{pos1, }
+\item[{const {\bf G\-L\-Position} \&}]{pos2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}
+
+
+calculate the distance between  and   -\/ the start posion  -\/ the end posion 
+
+calculate the distance between  and 
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+-\/ the distance between  and  
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+   \textcolor{keywordflow}{if} the @pos1 and @pos2 form a right angled triangle, use the pythagorean theorem to calculate
+   the \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance}. otherwise, calculate it directly.
+  /
+\textcolor{keywordflow}{if} (pos1.posX != pos2.posX && pos1.posY != pos2.posY)
+\{
+    GLint a = abs(pos1.posX - pos2.posX);
+    GLint b = abs(pos1.posY - pos2.posY);
+    
+    \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} = sqrt(pow(a, 2) + pow(b, 2));
+\}
+\textcolor{keywordflow}{else}
+\{
+    \textcolor{keywordflow}{if} (pos1.posX == pos2.posX)
+    \{
+        \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} = abs(pos1.posY - pos2.posY);
+    \}
+    
+    \textcolor{keywordflow}{if} (pos1.posY == pos2.posY)
+    \{
+        \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} = abs(pos1.posX - pos2.posX);
+    \}
+\}
+\end{DoxyCode}
+\hypertarget{classEnvironmentClass_a330bbca10dbd5743714d7e722748ae47}{\index{Environment\-Class@{Environment\-Class}!generate\-Rand\-Position@{generate\-Rand\-Position}}
+\index{generate\-Rand\-Position@{generate\-Rand\-Position}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{generate\-Rand\-Position}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-L\-Position} Environment\-Class\-::generate\-Rand\-Position (
+\begin{DoxyParamCaption}
+\item[{const G\-Lint \&}]{width, }
+\item[{const G\-Lint \&}]{height, }
+\item[{const G\-Lint \&}]{bounding\-Width, }
+\item[{const G\-Lint \&}]{bounding\-Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}}\label{classEnvironmentClass_a330bbca10dbd5743714d7e722748ae47}
+
+
+generate a rand position for any object, base on its bounding rectangle 
+
+generate a rand position for any object, base on its bounding rectangle
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni  -\/ G\-U\-I window width  -\/ G\-U\-I window height  -\/ the bounding rectangle with  -\/ the bounding rectangle height
+\end{DoxyAuthor}
+if successed, \begin{DoxyReturn}{Returns}
+the generated posion, otherwise, 
+
+(0, 0, 0) 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]the poston must in the window \end{DoxyRefDesc}
+
+
+
+\begin{DoxyCode}
+   check \textcolor{keywordflow}{if} the current \textcolor{keywordtype}{object} over lapped any robot
+   check \textcolor{keywordflow}{if} the robot completely contain \textcolor{keyword}{this} \textcolor{keywordtype}{object}
+   check \textcolor{keywordflow}{if} the robot over lapped the \textcolor{keywordtype}{object}
+  /  
+\textcolor{keywordflow}{for} (std::size\_t i = 0; i < vecRobot.size(); i++)
+\{
+    \textcolor{keywordflow}{if} (\hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance}(\hyperlink{structGLPosition}{GLPosition}(posX, posY, 0), vecRobot[i]->position) < vecRobot[i]->
+      getRadius() + std::max(boundingWidth,
+            boundingHeight))
+    \{
+        overlapped = \textcolor{keyword}{true};
+        \textcolor{keywordflow}{break};
+    \}
+    
+    \textcolor{keywordflow}{if} (vecRobot[i]->detectOverlapping(leftTop, rightBottom, vecRobot[i]->getRadius()))
+    \{
+        overlapped = \textcolor{keyword}{true};
+        \textcolor{keywordflow}{break};
+    \}
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+    check \textcolor{keywordflow}{if} the obstacle completely contain \textcolor{keyword}{this} \textcolor{keywordtype}{object}
+    check \textcolor{keywordflow}{if} the robot over lapped the robot
+    \textcolor{keywordflow}{if} the position is over lapped, it should be ignored
+   / 
+\textcolor{keywordflow}{for} (std::size\_t i = 0; i < \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}.size(); i++)
+\{
+    \textcolor{keywordflow}{if} (\hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance}(\hyperlink{structGLPosition}{GLPosition}(posX, posY, 0), \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[i]->position) < 
+      \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[i]->getRadius() + std::max(boundingWidth,
+            boundingHeight))
+    \{
+        overlapped = \textcolor{keyword}{true};
+        \textcolor{keywordflow}{break};
+    \}
+    
+    \textcolor{keywordflow}{if} (\hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[i]->detectOverlapping(leftTop, rightBottom, 
+      \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[i]->getRadius()))
+    \{
+        overlapped = \textcolor{keyword}{true};
+        \textcolor{keywordflow}{break};
+    \}
+\}
+\end{DoxyCode}
+\hypertarget{classEnvironmentClass_a3af1904397a45c74acbc0c8246c0317d}{\index{Environment\-Class@{Environment\-Class}!init@{init}}
+\index{init@{init}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-Class\-::init (
+\begin{DoxyParamCaption}
+\item[{const G\-Lint \&}]{width, }
+\item[{const G\-Lint \&}]{height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classEnvironmentClass_a3af1904397a45c74acbc0c8246c0317d}
+
+
+init the scene, create both robots and obstacles, place them randomly, 
+
+init the scene, create both robots and obstacles, place them randomly, and match the robot and its target.
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni  G\-U\-I window width  G\-U\-I window height no return value 
+\end{DoxyAuthor}
+
+\begin{DoxyCode}
+   initialize robot objects
+   set robot radius to 16 pixels,
+   generate a rand posion \textcolor{keywordflow}{for} the robot.
+   Set robot \textcolor{keywordtype}{id} and type with speed:8px.
+   appointed target obstacle,set \textcolor{keywordflow}{default} color,different direction line color \textcolor{keywordflow}{for} different robot,
+   add the robot instance to the vector
+  / 
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 2; i++)
+\{
+    GLint robotRadius = 16;
+    \hyperlink{structGLPosition}{GLPosition} robotPos = \hyperlink{classEnvironmentClass_a330bbca10dbd5743714d7e722748ae47}{generateRandPosition}(width, height, robotRadius, 
+      robotRadius);
+    \hyperlink{classRobotClass}{RobotClass} *pRobot = \textcolor{keyword}{new}(std::nothrow) \hyperlink{classRobotClass}{RobotClass}(robotPos, robotRadius, 0);
+    
+    \textcolor{keywordflow}{if} (NULL == pRobot)
+        \textcolor{keywordflow}{continue};
+    pRobot->id = 1000 + i;
+    pRobot->type = Object::eRobot;
+    pRobot->\hyperlink{classRobotClass_ada07c364411e6d4c3efd6c5f5e4e6275}{setSpeed}(8);
+    
+    pRobot->setTarget(i * 2 + 1010);
+    pRobot->\hyperlink{classRobotClass_af2069bec3bb391b05676e154527674fa}{render}(\hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{glColorVec}(0.0f, 80.0f, 100.0f));
+     
+    \textcolor{keywordflow}{if} (i % 2)
+        pRobot->setDirectionColor(\hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{glColorVec}(100, 0, 0));
+    \textcolor{keywordflow}{else}
+        pRobot->setDirectionColor(\hyperlink{Common_8h_a5113b6588451c418d38d8b3681eb6040}{glColorVec}(200, 0, 100));
+         
+    vecRobot.push\_back(pRobot);
+\}
+\end{DoxyCode}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]must create 2 robots \end{DoxyRefDesc}
+
+
+
+\begin{DoxyCode}
+   initialize obstacle objects,
+   rand generater radius \textcolor{keywordflow}{for} obstacle, it between [16, 48) pixels
+   generate a rand posion \textcolor{keywordflow}{for} the obstacle and \textcolor{keyword}{new} circular obstacle instance
+   set obstacle \textcolor{keywordtype}{id},type, \textcolor{keywordflow}{default} color, 
+   \textcolor{keywordflow}{if} \textcolor{keyword}{this} obstacle is appointed to a robot, use the robot\textcolor{stringliteral}{'s direction line color to draw it}
+\textcolor{stringliteral}{   add to the obstacle vector}
+\textcolor{stringliteral}{  / }
+\textcolor{stringliteral}{for (int i = 0; i < 8; i++)}
+\textcolor{stringliteral}{\{}
+\textcolor{stringliteral}{    GLint obsRadius = rand() % 32 + 50; }
+\textcolor{stringliteral}{    GLPosition obsPos = generateRandPosition(width, height, obsRadius, obsRadius);}
+\textcolor{stringliteral}{    CircularObstacle *pCircObs = new(std::nothrow) CircularObstacle(obsPos, obsRadius);}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    if (NULL == pCircObs)}
+\textcolor{stringliteral}{        continue;}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    pCircObs->id = 1010 + i;}
+\textcolor{stringliteral}{   }
+\textcolor{stringliteral}{    pCircObs->type = Object::eCircular;}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    pCircObs->render(glColorVec(0, 100, 0));}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    for (std::size\_t j = 0; j < vecRobot.size(); j++)}
+\textcolor{stringliteral}{    \{}
+\textcolor{stringliteral}{        if (vecRobot[j]->target() != pCircObs->id)}
+\textcolor{stringliteral}{            continue;}
+\textcolor{stringliteral}{            }
+\textcolor{stringliteral}{        pCircObs->motionless = false;}
+\textcolor{stringliteral}{        pCircObs->render(vecRobot[j]->directionColor());}
+\textcolor{stringliteral}{    \}}
+\textcolor{stringliteral}{    vecObstacle.push\_back(pCircObs);}
+\textcolor{stringliteral}{\}}
+\end{DoxyCode}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]must create 6 circular obstacle \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]remember the gui windows's size \end{DoxyRefDesc}
+\hypertarget{classEnvironmentClass_a5b501f7123ca5ba7fd711a44a3d0141e}{\index{Environment\-Class@{Environment\-Class}!sense\-Homing@{sense\-Homing}}
+\index{sense\-Homing@{sense\-Homing}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{sense\-Homing}]{\setlength{\rightskip}{0pt plus 5cm}double Environment\-Class\-::sense\-Homing (
+\begin{DoxyParamCaption}
+\item[{const {\bf Robot\-Class} $\ast$}]{p\-Robot, }
+\item[{const {\bf Object} $\ast$}]{p\-Target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classEnvironmentClass_a5b501f7123ca5ba7fd711a44a3d0141e}
+
+
+the senser for {\itshape Homing}, it base on the rectangular coordinate system 
+
+the senser for {\itshape Homing}, it base on the rectangular coordinate system
+
+-\/ the detect robot  -\/ the matched circular obstacle \begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+-\/ return the degrees from the  to the  
+\end{DoxyReturn}
+\hypertarget{classEnvironmentClass_a52f4e00b563733c2019204d16de139b9}{\index{Environment\-Class@{Environment\-Class}!sense\-Touch@{sense\-Touch}}
+\index{sense\-Touch@{sense\-Touch}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{sense\-Touch}]{\setlength{\rightskip}{0pt plus 5cm}bool Environment\-Class\-::sense\-Touch (
+\begin{DoxyParamCaption}
+\item[{{\bf Object} $\ast$}]{p\-Object}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classEnvironmentClass_a52f4e00b563733c2019204d16de139b9}
+
+
+the senser for {\itshape Touch}  -\/ the detect object  -\/ the flag to indicate if the  is deleted? 
+
+the senser for {\itshape Touch}
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+-\/ if any collision found, return true, otherwise, return false 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+   check \textcolor{keywordflow}{if} the \textcolor{keywordtype}{object} is robot? \textcolor{keywordflow}{if} yes, make some initialize job.
+   
+  / 
+\textcolor{keywordflow}{if} (pObject->type == Object::eRobot)
+\{
+    \textcolor{keyword}{const} \hyperlink{classRobotClass}{RobotClass} *pRobot = \textcolor{keyword}{dynamic\_cast<}\textcolor{keyword}{const }\hyperlink{classRobotClass}{RobotClass} *\textcolor{keyword}{>}(pObject);
+    
+    \textcolor{keywordflow}{if} (pRobot)
+    \{
+        offset = pRobot->\hyperlink{classRobotClass_a61a9c5217fb1092668c55864b7e4bad0}{getRadius}();
+        
+        \textcolor{keywordflow}{if} (pRobot->\hyperlink{classObject_ad9adac7de77247bd045a43c317794899}{detectWall}(winWidth, winHeight, pRobot->\hyperlink{classRobotClass_a61a9c5217fb1092668c55864b7e4bad0}{getRadius}()))
+            \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+            
+    \}
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+   check \textcolor{keywordflow}{if} the \textcolor{keywordtype}{object} is circular obstacle? \textcolor{keywordflow}{if} yes, make some initialize job.
+  / 
+\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pObject->type == Object::eCircular)
+\{
+    \textcolor{keyword}{const} \hyperlink{classCircularObstacle}{CircularObstacle} *pCircObs = \textcolor{keyword}{dynamic\_cast<}\textcolor{keyword}{const }
+      \hyperlink{classCircularObstacle}{CircularObstacle} *\textcolor{keyword}{>}(pObject);
+    
+    \textcolor{keywordflow}{if} (pCircObs)
+    \{
+        offset = pCircObs->\hyperlink{classCircularObstacle_a4389dbe384efd2055adfbf2bfd8c8683}{getRadius}();
+        
+        \textcolor{keywordflow}{if} (pCircObs->\hyperlink{classObject_ad9adac7de77247bd045a43c317794899}{detectWall}(winWidth, winHeight, pCircObs->
+      \hyperlink{classCircularObstacle_a4389dbe384efd2055adfbf2bfd8c8683}{getRadius}()))
+            \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+    \}
+\}
+
+\textcolor{keywordtype}{bool} impact = \textcolor{keyword}{false};
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+   check \textcolor{keywordflow}{if} the @pObject collided with any robot?
+   \textcolor{keywordflow}{if} the @pObject is itself, skip it, and record the index \textcolor{keywordflow}{for} the robot vector
+   \textcolor{keywordflow}{if} the \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} from the @pObject to the robot less then the sum of robot\textcolor{stringliteral}{'s radius and offset,}
+\textcolor{stringliteral}{   cosider it collided.}
+\textcolor{stringliteral}{  / }
+\textcolor{stringliteral}{for (std::size\_t i = 0; i < vecRobot.size(); i++)}
+\textcolor{stringliteral}{\{}
+\textcolor{stringliteral}{    if (pObject->id == vecRobot[i]->id)}
+\textcolor{stringliteral}{        continue;}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    if (vecRobot[i]->getRadius() + offset >= EnvironmentClass::distance(pObject->position,
+       vecRobot[i]->position))}
+\textcolor{stringliteral}{    \{}
+\textcolor{stringliteral}{        vecRobot[i]->color = EnvironmentClass::collidedColor;}
+\textcolor{stringliteral}{        impact = true;}
+\textcolor{stringliteral}{        }
+\textcolor{stringliteral}{        break;}
+\textcolor{stringliteral}{    \}}
+\textcolor{stringliteral}{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+    \textcolor{keywordflow}{if} the @pObject is itself, skip it, and record the index \textcolor{keywordflow}{for} the robot vector
+    \textcolor{keywordflow}{if} the \hyperlink{classEnvironmentClass_a3fa1b87f8ae74bf1cefda9862e1bdfca}{distance} from the @pObject to the obstace less then the sum of circular
+    obstacle\textcolor{stringliteral}{'s radius and offset, cosider it collided.}
+\textcolor{stringliteral}{    if the @pObject is robot, and current circular obstacle is its target, distance both objects}
+\textcolor{stringliteral}{   / }
+\textcolor{stringliteral}{for (std::size\_t j = 0; !impact && j < vecObstacle.size(); j++)}
+\textcolor{stringliteral}{\{}
+\textcolor{stringliteral}{    if (pObject->id == vecObstacle[j]->id)}
+\textcolor{stringliteral}{        continue;}
+\textcolor{stringliteral}{        }
+\textcolor{stringliteral}{    if (vecObstacle[j]->getRadius() + offset >= EnvironmentClass::distance(pObject->position,
+       vecObstacle[j]->position))}
+\textcolor{stringliteral}{    \{}
+\textcolor{stringliteral}{        if (pObject->type == Object::eRobot && dynamic\_cast<const RobotClass *>(pObject)->target() ==
+       vecObstacle[j]->id)}
+\textcolor{stringliteral}{        \{}
+\textcolor{stringliteral}{            pObject->flagDraw = false;}
+\textcolor{stringliteral}{            vecObstacle[j]->flagDraw = false;}
+\textcolor{stringliteral}{        \}}
+\textcolor{stringliteral}{        }
+\textcolor{stringliteral}{        impact = true;}
+\textcolor{stringliteral}{        vecObstacle[j]->color = EnvironmentClass::collidedColor;}
+\textcolor{stringliteral}{        }
+\textcolor{stringliteral}{        break;}
+\textcolor{stringliteral}{    \}}
+\textcolor{stringliteral}{\}}
+\end{DoxyCode}
+\hypertarget{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}{\index{Environment\-Class@{Environment\-Class}!update@{update}}
+\index{update@{update}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Environment\-Class\-::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}
+
+
+update simulating scene, such as robot's angle, object's posiion, etc 
+
+update simulating scene, such as robot's angle, object's posiion, etc
+
+\begin{DoxyAuthor}{Author}
+Jiajun Ni 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]calculate elapsed time \end{DoxyRefDesc}
+
+
+
+\begin{DoxyCode}
+   \hyperlink{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}{update} robot\textcolor{stringliteral}{'s status}
+\textcolor{stringliteral}{   check if robot collided its target, let them both disappear, and rotate it 90 degrees}
+\textcolor{stringliteral}{   driving the robot to moving by calculate its offset since last update}
+\textcolor{stringliteral}{   find out the robot'}s target obstacle
+   calculate the degrees from robot to its target, and \hyperlink{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}{update} its orientaton
+  / 
+\textcolor{keywordflow}{for} (std::size\_t i = 0; i < 2 \textcolor{comment}{/*vecRobot.size()*/}; i++)
+\{
+        \textcolor{keywordflow}{if} (\hyperlink{classEnvironmentClass_a52f4e00b563733c2019204d16de139b9}{EnvironmentClass::senseTouch}(vecRobot[i]))
+        \{
+            \textcolor{keywordflow}{if} (vecRobot[i]->collided <= 2) \textcolor{comment}{// Prevents robot from spinning wildly}
+            \{
+                vecRobot[i]->rotate(90);
+            \}
+            vecRobot[i]->collided = 3; \textcolor{comment}{// Amount of update()'s until homing begins}
+        \}
+        \textcolor{keywordflow}{else}
+            vecRobot[i]->color = vecRobot[i]->oldColor;
+
+    vecRobot[i]->move(elapsedTime);
+    
+    time\_t t\_RotatePeriod = t\_now - t\_lastRotate;
+    \textcolor{keywordflow}{if} (t\_RotatePeriod >= 2)
+    \{
+        \hyperlink{classObject}{Object} *pTarget = NULL;
+        t\_lastRotate = t\_now;
+        
+        \textcolor{keywordflow}{for} (std::size\_t j = 0; j < \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}.size(); j++)
+        \{
+            \textcolor{keywordflow}{if} (\hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[j]->\textcolor{keywordtype}{id} != vecRobot[i]->target())
+                \textcolor{keywordflow}{continue};
+                
+            pTarget = \hyperlink{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{vecObstacle}[j];
+            \textcolor{keywordflow}{break};
+        \}
+        
+        assert(NULL != pTarget);
+
+        \textcolor{keywordflow}{if} (vecRobot[i]->collided <= 0) \{ \textcolor{comment}{// if robot has not recently collided with an object}
+            vecRobot[i]->setOrientation(\hyperlink{classEnvironmentClass_a5b501f7123ca5ba7fd711a44a3d0141e}{EnvironmentClass::senseHoming}(vecRobot
+      [i], pTarget));
+        \}
+        vecRobot[i]->collided -= 1;
+    \}
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+   \hyperlink{classEnvironmentClass_a2ea61074efd8e3f099e2876a101c219f}{update} all circular obstacle\textcolor{stringliteral}{'s status}
+\textcolor{stringliteral}{   check if circular obstacle collided its robot, if yes, let them both disappear, and rotate it 90 degrees}
+\textcolor{stringliteral}{   driving the circular obstacle to moving by calculate its offset since last update}
+\textcolor{stringliteral}{  / }
+\textcolor{stringliteral}{for (std::size\_t j = 0; j < vecObstacle.size(); j++)}
+\textcolor{stringliteral}{\{}
+\textcolor{stringliteral}{    if (EnvironmentClass::senseTouch(vecObstacle[j]))}
+\textcolor{stringliteral}{        vecObstacle[j]->rotate(90);}
+\textcolor{stringliteral}{    else}
+\textcolor{stringliteral}{        vecObstacle[j]->color = vecObstacle[j]->oldColor;}
+\textcolor{stringliteral}{    }
+\textcolor{stringliteral}{    vecObstacle[j]->move(elapsedTime);}
+\textcolor{stringliteral}{\}}
+\end{DoxyCode}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000006}{Todo}]update the last update time \end{DoxyRefDesc}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}{\index{Environment\-Class@{Environment\-Class}!vec\-Obstacle@{vec\-Obstacle}}
+\index{vec\-Obstacle@{vec\-Obstacle}!EnvironmentClass@{Environment\-Class}}
+\subsubsection[{vec\-Obstacle}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf Circular\-Obstacle} $\ast$ $>$ Environment\-Class\-::vec\-Obstacle\hspace{0.3cm}{\ttfamily [static]}}}\label{classEnvironmentClass_a738593c1c3ed257bea8f99f663f59d85}
+set up the Obstacle and Robot and also the Target 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{EnvironmentClass_8h}{Environment\-Class.\-h}\item 
+Environment\-Class.\-cpp\end{DoxyCompactItemize}
